@@ -1,0 +1,36 @@
+﻿#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Icon=icon.ico
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+#include-once
+
+Opt("GUICloseOnESC",0)
+
+;~ #include "Array.au3"
+#include "UDF/GEngin.au3"
+
+#include "GlobalVar.au3"
+#include "GUI/GUI.au3"
+#include "Tray.au3"
+#include "Functions.au3"
+
+
+_GEng_Start($AutoName, $CharWidth, $CharHeight,$CharBornPos[0],$CharBornPos[1], $WS_POPUP+$DS_MODALFRAME, $WS_EX_LAYERED+$WS_EX_TOOLWINDOW+$WS_EX_WINDOWEDGE)
+FCharOnTop()
+
+FAutoStart()
+
+While 1
+;~ 	_GEng_ScrFlush(-1)
+
+	Sleep(72)
+	FAutoPause()
+;~ 	STShow()
+
+	FCharGetInfo()
+	FCharLiving()
+
+	_GEng_Sprite_Draw($mm1obj)
+
+	_GEng_ScrUpdatePNG()
+WEnd
+
