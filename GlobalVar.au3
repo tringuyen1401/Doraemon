@@ -20,7 +20,7 @@ Global $LogFileName = "log\"&$LogDate&".ini"
 
 Global $CharWidth = 70
 Global $CharHeight = 70
-Global $CharHeightDif = 10
+Global $CharHeightDif = 2
 Global $mm1l = "data\mm1.png"
 Global $mm1width = 2870
 Global $mm1height = 140

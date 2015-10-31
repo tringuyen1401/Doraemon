@@ -1,5 +1,5 @@
 ﻿#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Icon=icon.ico
+#AutoIt3Wrapper_Icon=dora.ico
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include-once
 

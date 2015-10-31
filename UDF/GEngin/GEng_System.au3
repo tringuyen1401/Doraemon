@@ -77,7 +77,7 @@ Func _GEng_Start($sTitle, $iW, $iH, $iX = -1, $iY = -1, $iStyle = -1, $iExtStyle
 	$__GEng_hBuffer = __GEng_GetBuffer()
 	; ---
 	_GDIPlus_GraphicsSetInterpolationMode($__GEng_hGraphic, 7) ; je l'ajoute sans vraiement voir de résultat!
-	DllCall($ghGDIPDll, "uint", "GdipSetTextRenderingHint", "handle", $__GEng_hBuffer, "int", 4) ; Thanks UEZ! (1.2.2)
+	DllCall($__g_hGDIPDll, "uint", "GdipSetTextRenderingHint", "handle", $__GEng_hBuffer, "int", 4) ; Thanks UEZ! (1.2.2)
 	; ---
 	$__GEng_hDC = _WinAPI_GetDC($__GEng_hGui)
 	$__GEng_hCompatibleDC = _WinAPI_CreateCompatibleDC($__GEng_hDC)
@@ -227,17 +227,17 @@ EndFunc
 ;    Return $Ret[0]
 ;EndFunc   ;==>_WinAPI_CreateDIBSection
 
-Func _GDIPlus_GraphicsSetInterpolationMode($hGraphics, $iInterpolationMode)
-	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipSetInterpolationMode", "hwnd", $hGraphics, "int", $iInterpolationMode)
-	If @error Then Return SetError(@error, @extended, False)
-	Return $aResult[0] = 0
-EndFunc   ;==>_GDIPlus_GraphicsSetInterpolationMode
+;Func _GDIPlus_GraphicsSetInterpolationMode($hGraphics, $iInterpolationMode)
+;	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipSetInterpolationMode", "hwnd", $hGraphics, "int", $iInterpolationMode)
+;	If @error Then Return SetError(@error, @extended, False)
+;	Return $aResult[0] = 0
+;EndFunc   ;==>_GDIPlus_GraphicsSetInterpolationMode
 
-Func _GDIPlus_ImageAttributesCreate()
-	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipCreateImageAttributes", "int*", 0)
-	If @error Then Return SetError(@error, @extended, 0)
-	Return $aResult[1]
-EndFunc   ;==>_GDIPlus_ImageAttributesCreate
+;Func _GDIPlus_ImageAttributesCreate()
+;	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipCreateImageAttributes", "int*", 0)
+;	If @error Then Return SetError(@error, @extended, 0)
+;	Return $aResult[1]
+;EndFunc   ;==>_GDIPlus_ImageAttributesCreate
 
 Func __GEng_GetBuffer()
 	Local $hBuffer = _GDIPlus_ImageGetGraphicsContext($__GEng_hBitmap)

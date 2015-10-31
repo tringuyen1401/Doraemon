@@ -34,7 +34,7 @@
 
 Global Const $__GEng_SpritesArrayUB = 40
 Global Enum $GEng_Origin_Mid, $GEng_Origin_TL, $GEng_Origin_TR, $GEng_Origin_BL, $GEng_Origin_BR
-Global Const $tagGDIPCOLORMATRIX = "float m[25];"
+;Global Const $tagGDIPCOLORMATRIX = "float m[25];"
 
 Global Enum _
 	$_gSpr_hBuffer, $_gSpr_iImg, $_gSpr_ImgX, $_gSpr_ImgY, $_gSpr_ImgW, $_gSpr_ImgH, _
@@ -397,14 +397,14 @@ Func _GDIPlus_ColorMatrixTranslate(ByRef $tCM, $nOffsetRed, $nOffsetGreen, $nOff
 	_GDIPlus_ColorMatrixMultiply($tCM, $tTranslateCM, $iOrder)
 EndFunc   ;==>_GDIPlus_ColorMatrixTranslate
 
-Func _GDIPlus_ColorMatrixCreateTranslate($nRed, $nGreen, $nBlue, $nAlpha = 0)
-	Local $iI, $tCM, $aFactors[4] = [$nRed, $nGreen, $nBlue, $nAlpha]
-	$tCM = _GDIPlus_ColorMatrixCreate()
-	For $iI = 0 To 3
-		DllStructSetData($tCM, "m", $aFactors[$iI], 21 + $iI)
-	Next
-	Return $tCM
-EndFunc   ;==>_GDIPlus_ColorMatrixCreateTranslate
+;Func _GDIPlus_ColorMatrixCreateTranslate($nRed, $nGreen, $nBlue, $nAlpha = 0)
+;	Local $iI, $tCM, $aFactors[4] = [$nRed, $nGreen, $nBlue, $nAlpha]
+;	$tCM = _GDIPlus_ColorMatrixCreate()
+;	For $iI = 0 To 3
+;		DllStructSetData($tCM, "m", $aFactors[$iI], 21 + $iI)
+;	Next
+;	Return $tCM
+;EndFunc   ;==>_GDIPlus_ColorMatrixCreateTranslate
 
 Func _GDIPlus_ColorMatrixMultiply(ByRef $tCM1, $tCM2, $iOrder = 0)
 	Local $iX, $iY, $iI, $iOffset, $nT, $tA, $tB, $tTmpCM
@@ -434,31 +434,31 @@ Func _GDIPlus_ColorMatrixMultiply(ByRef $tCM1, $tCM2, $iOrder = 0)
 	Next
 EndFunc   ;==>_GDIPlus_ColorMatrixMultiply
 
-Func _GDIPlus_ImageAttributesSetColorMatrix($hImageAttributes, $iColorAdjustType = 0, $fEnable = False, $pClrMatrix = 0, $pGrayMatrix = 0, $iColorMatrixFlags = 0)
-	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipSetImageAttributesColorMatrix", "hwnd", $hImageAttributes, "int", $iColorAdjustType, "int", $fEnable, "ptr", $pClrMatrix, "ptr", $pGrayMatrix, "int", $iColorMatrixFlags)
-	If @error Then Return SetError(@error, @extended, False)
-	Return $aResult[0] = 0
-EndFunc   ;==>_GDIPlus_ImageAttributesSetColorMatrix
+;Func _GDIPlus_ImageAttributesSetColorMatrix($hImageAttributes, $iColorAdjustType = 0, $fEnable = False, $pClrMatrix = 0, $pGrayMatrix = 0, $iColorMatrixFlags = 0)
+;	Local $aResult = DllCall($ghGDIPDll, "uint", "GdipSetImageAttributesColorMatrix", "hwnd", $hImageAttributes, "int", $iColorAdjustType, "int", $fEnable, "ptr", $pClrMatrix, "ptr", $pGrayMatrix, "int", $iColorMatrixFlags)
+;	If @error Then Return SetError(@error, @extended, False)
+;	Return $aResult[0] = 0
+;EndFunc   ;==>_GDIPlus_ImageAttributesSetColorMatrix
 
 Func _GDIPlus_GraphicsDrawImageRectRectIA($hGraphics, $hImage, $nSrcX, $nSrcY, $nSrcWidth, $nSrcHeight, $nDstX, $nDstY, $nDstWidth, $nDstHeight, $hImageAttributes = 0, $iUnit = 2)
-	Local $aResult = DllCall($ghGDIPDll, "int", "GdipDrawImageRectRect", "hwnd", $hGraphics, "hwnd", $hImage, "float", $nDstX, "float", _
+	Local $aResult = DllCall($__g_hGDIPDll, "int", "GdipDrawImageRectRect", "hwnd", $hGraphics, "hwnd", $hImage, "float", $nDstX, "float", _
 			$nDstY, "float", $nDstWidth, "float", $nDstHeight, "float", $nSrcX, "float", $nSrcY, "float", $nSrcWidth, "float", _
 			$nSrcHeight, "int", $iUnit, "hwnd", $hImageAttributes, "int", 0, "int", 0)
 	If @error Then Return SetError(@error, @extended, False)
 	Return $aResult[0] = 0
 EndFunc   ;==>_GDIPlus_GraphicsDrawImageRectRectIA
 
-Func _GDIPlus_ColorMatrixCreate()
-	Return _GDIPlus_ColorMatrixCreateScale(1, 1, 1, 1)
-EndFunc   ;==>_GDIPlus_ColorMatrixCreate
+;Func _GDIPlus_ColorMatrixCreate()
+;	Return _GDIPlus_ColorMatrixCreateScale(1, 1, 1, 1)
+;EndFunc   ;==>_GDIPlus_ColorMatrixCreate
 
-Func _GDIPlus_ColorMatrixCreateScale($nRed, $nGreen, $nBlue, $nAlpha = 1)
-	Local $tCM
-	$tCM = DllStructCreate($tagGDIPCOLORMATRIX)
-	DllStructSetData($tCM, "m", $nRed, 1)
-	DllStructSetData($tCM, "m", $nGreen, 7)
-	DllStructSetData($tCM, "m", $nBlue, 13)
-	DllStructSetData($tCM, "m", $nAlpha, 19)
-	DllStructSetData($tCM, "m", 1, 25)
-	Return $tCM
-EndFunc   ;==>_GDIPlus_ColorMatrixCreateScale
+;Func _GDIPlus_ColorMatrixCreateScale($nRed, $nGreen, $nBlue, $nAlpha = 1)
+;	Local $tCM
+;	$tCM = DllStructCreate($tagGDIPCOLORMATRIX)
+;	DllStructSetData($tCM, "m", $nRed, 1)
+;;	DllStructSetData($tCM, "m", $nGreen, 7)
+;	DllStructSetData($tCM, "m", $nBlue, 13)
+;	DllStructSetData($tCM, "m", $nAlpha, 19)
+;	DllStructSetData($tCM, "m", 1, 25)
+;	Return $tCM
+;EndFunc   ;==>_GDIPlus_ColorMatrixCreateScale
