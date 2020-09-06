@@ -4,3 +4,6 @@ This is a program to create a Doraemon figure (one of my most favorite cartoon c
 Doraemon.au3 is the main file. Run it will get you the program.
 
 Download everything and Run if you like or you can just execute the .exe file if you trust me :)
+
+
+ ![](doraemon.gif)
